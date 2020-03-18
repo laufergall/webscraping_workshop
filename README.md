@@ -26,19 +26,14 @@ This application still needs lots of improvement, but it serves to illustrate di
 
 Based on this code, we will go through a series of [hands-on tasks](#Hands-on) to understand:
 
-:white_check_mark: In General, how such an application can be architectured
-:white_check_mark: Employing scrapy to retrieve data from the internet
-:white_check_mark: Establishing the connection from scrapy to a database
-:white_check_mark: Using a database client to check out the stored data
-:white_check_mark: Implementing backend REST API endpoints to query the stored data in the form users need it
-:white_check_mark: Dockerizing all components: scrapy, database, client, and backend
+&#x2713; In General, how such an application can be architectured
+&#x2713; Employing scrapy to retrieve data from the internet
+&#x2713; Establishing the connection from scrapy to a database
+&#x2713; Using a database client to check out the stored data
+&#x2713; Implementing backend REST API endpoints to query the stored data in the form users need it
+&#x2713; Dockerizing all components: scrapy, database, client, and backend
 
-
-
-
-
-
-
+Introduction slides [here](workshop/introduction.html).
 
 ## Hands-on
 
