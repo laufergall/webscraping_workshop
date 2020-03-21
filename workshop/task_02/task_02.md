@@ -7,14 +7,14 @@ The containers for the database and for the client will be up permanently. Diffe
 
 # Steps:
 
-1. [Prepare docker](#Prepare docker)
-2. [Add docker-compose.yml](#Add docker-compose.yml)
-3. [Adapt scrapy pipeline](#Adapt scrapy pipeline)
-4. [Start the three containers](#Start the three containers)
-5. [Connect to db from Mongoclient](#Connect from Mongoclient)
-6. [Connect to db from Robo3T](#Connect from Robo3T)
+1. [Prepare docker](#step1)
+2. [Add docker-compose.yml](#step2)
+3. [Adapt scrapy pipeline](#step3)
+4. [Start the three containers](#step4)
+5. [Connect to db from Mongoclient](#step5)
+6. [Connect to db from Robo3T](#step6)
 
-## Prepare docker
+## Prepare docker <a name="step1"></a>
 
 You should have already installed one of these:
 * [Docker Toolbox for Windows](https://docs.docker.com/toolbox/toolbox_install_windows/#step-3-verify-your-installation)
@@ -54,14 +54,14 @@ You should see the page: `Welcome to nginx! If you see this page,...`.
 Now, you're all set with docker!
 
 
-## Add docker-compose.yml
+## Add docker-compose.yml <a name="step2"></a>
 
 &#8594; **Copy** the `docker-compose.yml` file of this folder to your root project directory `<project-dir>/` (same level as `.gitignore`).
 
 The docker-compose file is defining the three containers: `mongodb`, `mongoclient`, and `scrapy`. Note that we are indicating where to get or build docker images from, ports (in case of `mongodb` and `mongoclient`), and environment variables in case of `scrapy`, needed for the connection to the database.
 
 
-## Adapt scrapy pipeline
+## Adapt scrapy pipeline <a name="step3"></a>
 
 In the scrapy pipelines file (`<project-dir>/scrapy/kinoprogramm/pipelines.py`), we define how our scraped data should be output. 
 
@@ -84,7 +84,7 @@ MONGODB_DB = os.environ.get('MONGODB_DB', 'kinoprogramm')
 MONGODB_COLLECTION = os.environ.get('MONGODB_COLLECTION', 'kinos')
 ```
 
-## Start the three containers
+## Start the three containers <a name="step4"></a>
 
 &#8594; To **start the containers**, we just build the images (with the current code) with:
 
@@ -117,7 +117,7 @@ docker ps
 You should see a table-like output with `CONTAINER ID`, `IMAGE`, `COMMAND`, `CREATED`, `STATUS`, `PORTS` and `NAMES` for all containers you have up. 
 
 
-## Connect to db from Mongoclient
+## Connect to db from Mongoclient <a name="step5"></a>
 
 We are going to verify that we have collected our current cinema program and has been stored in mongo db. Our [Nosqlclient](https://github.com/nosqlclient/nosqlclient) (formerly mongoclient) container should be up, as we checked in last step.
 
@@ -156,7 +156,7 @@ db.kinos.find( { name: /Cinemax/, "shows.title": /Bad Boys/ }, {name: 1, "addres
 Can you tell which SQL commands these correspond to?
 
 
-## Connect to db from Robo3T
+## Connect to db from Robo3T <a name="step6"></a>
 
 You can perform this step if you have installed [Robo 3T](https://robomongo.org/).
 

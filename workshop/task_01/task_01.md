@@ -21,13 +21,13 @@ In this workshop, we will prepend `http://web.archive.org/web/20191102035415/` t
 
 # Steps:
 
-1. [Clone or download main project](#Clone or download main project)
-2. [Install scrapy project requirements](#Install scrapy project requirements)
-3. [Scrape data and write to json file](#Scrape data and write to json file)
-4. [Enhance spyder](#Enhance spyder)
+1. [Clone or download main project](#step1)
+2. [Install scrapy project requirements](#step2)
+3. [Scrape data and write to json file](#step3)
+4. [Enhance spyder](#step4)
 
 
-## Clone or download main project
+## Clone or download main project <a name="step1"></a>
 
 &#8594; First, **clone or download** [this repository](https://github.com/laufergall/movies-knowledgegraph/tree/workshop).
 
@@ -36,7 +36,7 @@ We will be making changes to different files in this project.
 **Important**: your `<project-dir>` is the root project folder. If you `cd` to `<project-dir>`, you should see the folders `backend`, `mongo`, `scrapy`, and the files `.gitignore` and `README.md`.
 
 
-## Install scrapy project requirements
+## Install scrapy project requirements <a name="step2"></a>
 
 You need Python 3.7.4.
 
@@ -51,7 +51,7 @@ pip install -r requirements.txt
 ```
 
 
-## Scrape data and write to json file
+## Scrape data and write to json file <a name="step3"></a>
 
 &#8594; You can **start the spider** by just:
 
@@ -65,7 +65,7 @@ Data will be written to the file specified with the `-o` parameter.
 However, this file does not contain any data (yet). We need to fix our spider.
 
 
-## Enhance spyder
+## Enhance spyder <a name="step4"></a>
 
 &#8594; **Add this code** to `<project-dir>/scrapy/kinoprogramm/spiders/kinoprogramm.py`, replacing line 105:
 

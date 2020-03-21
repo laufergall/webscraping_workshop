@@ -10,12 +10,12 @@ We want to prepare queries to retrieve data that our user will be interested in.
 
 # Steps:
 
-1. [Add backend service to docker-compose.yml](#Add backend service to docker-compose.yml)
-2. [Access the Swagger UI in browser](#Access the Swagger UI in browser)
-3. [Add cinemas endpoints](#Add cinemas endpoints)
+1. [Add backend service to docker-compose.yml](#step1)
+2. [Access the Swagger UI in browser](#step2)
+3. [Add cinemas endpoints](#step3)
 
 
-## Add backend service to docker-compose.yml
+## Add backend service to docker-compose.yml <a name="step1"></a>
 
 &#8594; **Add these lines** to the docker-compose.yml file. Note that it has to be indented under `services:` (at the same level as `scrapy`, `mongodb`, and `mongoclient`):
 
@@ -51,7 +51,7 @@ docker ps
 ```
 
 
-## Access the Swagger UI in browser
+## Access the Swagger UI in browser <a name="step2"></a>
 
 The [Swagger UI](https://flask-restplus.readthedocs.io/en/stable/swagger.html) allows to visualize our API and use its different endpoints.
 
@@ -68,7 +68,7 @@ curl -X GET -d contains=elias http://<local host>:8001/movies/titles
 ```
 
 
-## Add cinemas endpoints
+## Add cinemas endpoints <a name="step3"></a>
 
 &#8594; **Replace the file** `<project-dir>/backend/apis/api_cinemas.py` by `api_cinemas.py` of this folder.
 
