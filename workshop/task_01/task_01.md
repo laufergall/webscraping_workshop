@@ -40,7 +40,20 @@ We will be making changes to different files in this project.
 
 You need Python 3.7.4.
 
-&#8594; **Install requirements.txt** (under `<project-dir>/scrapy`). If you have conda installed, then:
+&#8594; **Install requirements.txt** (under `<project-dir>/scrapy`).
+
+If you are not using conda, you can simply create and activate a virtual environment:
+
+```bash
+python -m venv webscraping
+source webscraping/bin/activate  # for macOS and Linux
+webscraping/Scripts/activate.bat  # for Windows
+
+cd <project-dir>/scrapy
+pip install -r requirements.txt
+```
+
+If you have conda installed, then:
 
 ```bash
 conda create -n webscraping python=3.7.4
