@@ -24,7 +24,7 @@ In this workshop, we will prepend `http://web.archive.org/web/20191102035415/` t
 1. [Clone or download main project](#step1)
 2. [Install scrapy project requirements](#step2)
 3. [Scrape data and write to json file](#step3)
-4. [Enhance spyder](#step4)
+4. [Enhance spider](#step4)
 
 
 ## Clone or download main project <a name="step1"></a>
@@ -65,7 +65,7 @@ Data will be written to the file specified with the `-o` parameter.
 However, this file does not contain any data (yet). We need to fix our spider.
 
 
-## Enhance spyder <a name="step4"></a>
+## Enhance the spider <a name="step4"></a>
 
 &#8594; **Add this code** to `<project-dir>/scrapy/kinoprogramm/spiders/kinoprogramm.py`, replacing line 105:
 
@@ -84,7 +84,7 @@ cinema = Cinema(
 )
 ```
 
-&#8594; **Run the spyder** again and verify that the data in the json file looks right.
+&#8594; **Run the spider** again and verify that the data in the json file looks right.
 
 ```bash
 scrapy crawl kinoprogramm -o ../data/kinoprogramm_right_content.json
@@ -92,4 +92,4 @@ scrapy crawl kinoprogramm -o ../data/kinoprogramm_right_content.json
 
 Now we are properly scraping different pieces of information (name, description,...) from every cinema under [berlin.de](https://www.berlin.de/kino/_bin/azfilm.php).
 
-The `parse()` method receives as input a response from the start_url: https://www.berlin.de/kino/_bin/azfilm.php. The method extracts hrefs for websites corresponding to each cinema, like for instance [Acud Kino](https://www.berlin.de/kino/_bin/kinodetail.php/30151). Each cinema website is parsed separately, by the method `parse_cinema()`. 
+The `parse()` method receives as input a response from the start_url: https://www.berlin.de/kino/_bin/azfilm.php. The method extracts hrefs for websites corresponding to each cinema, like for instance [Acud Kino](https://www.berlin.de/kino/_bin/kinodetail.php/30151). Each cinema website is parsed separately, by the method `parse_cinema()`.
