@@ -57,7 +57,7 @@ The [Swagger UI](https://flask-restplus.readthedocs.io/en/stable/swagger.html) a
 
 &#8594; To access the Swagger UI **open your browser and navigate** to `http://<local host>:8001`, where, as always, `<local host>` is `localhost` or your `docker-machine ip`.
 
-&#8594; **Call the GET endpoint** `/movies/titles` to retrieve all movie titles currently shown in Berlin cinemas. You can also filter by indicating a substring which must be included in the title. 
+&#8594; **Call the GET endpoint** `/movies/titles` to retrieve all movie titles currently shown in Berlin cinemas. You can also filter by indicating a sub-string which must be included in the title. 
 
 Of course, you can also use curl, yet it is not so friendly. In your terminal: 
 
