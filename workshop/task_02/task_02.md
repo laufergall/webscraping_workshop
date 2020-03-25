@@ -64,11 +64,11 @@ The docker-compose file is defining the three containers: `mongodb`, `mongoclien
 
 ## 3. Adapt scrapy pipeline <a name="step3"></a>
 
-In the scrapy pipelines file (`<project-dir>/scrapy/kinoprogramm/pipelines.py`), we define how our scraped data should be output. 
+In the scrapy pipelines file (`<project-dir>/scrapy/kinoprogramm/pipelines.py`), we define how our scraped data should be output.
 
 In the scrapy settings file (`<project-dir>/scrapy/kinoprogramm/settings.py`), we specify where our scraped data should be output to. In other words, we specify which class of scrapy pipelines to use.
 
-Before (in Task 1), we were using the class `KinoprogrammPipeline` of pipelines to write to a json file. Now, we will use the class `MongoDBPipeline` to write to mongodb (which will be up in a docker container).
+Before (in Task 1), we were using the class `KinoprogrammPipeline` of pipelines to write to a JSON file. Now, we will use the class `MongoDBPipeline` to write to mongodb (which will be up in a docker container).
 
 &#8594; **Add these lines** to `<project-dir>/scrapy/kinoprogramm/settings.py` starting by line 72.
 
@@ -116,7 +116,7 @@ And, when all is ready, up with:
 docker-compose up
 ```
 
-You'll see many logs with all that is going on, coloured depending on the container. When the scrapy job is finished, you will see: `scrapy exited with code 0`. Nice! The data has been scraped. Let us check it in next step.
+You'll see many logs with all that is going on, colored depending on the container. When the scrapy job is finished, you will see: `scrapy exited with code 0`. Nice! The data has been scraped. Let us check it in next step.
 
 &#8594; On another terminal, **verify that the two other containers are up** by:
 
@@ -124,7 +124,7 @@ You'll see many logs with all that is going on, coloured depending on the contai
 docker ps
 ```
 
-You should see a table-like output with `CONTAINER ID`, `IMAGE`, `COMMAND`, `CREATED`, `STATUS`, `PORTS` and `NAMES` for all containers you have up. 
+You should see a table-like output with `CONTAINER ID`, `IMAGE`, `COMMAND`, `CREATED`, `STATUS`, `PORTS` and `NAMES` for all containers you have up.
 
 
 ## 5. Connect to db from Mongoclient <a name="step5"></a>
@@ -136,16 +136,16 @@ We are going to verify that we have collected our current cinema program and has
 &#8594; To **connect**:
 1. Click on "Connect" (up-right corner).
 2. Click on "Edit" the default connection.
-3. Clear connection url. Under the "Connection" tab, replace Host `127.0.0.1` by your `<local host>`. Port: `27017`. Database Name: `kinoprogramm`.
+3. Clear connection URL. Under the "Connection" tab, replace Host `127.0.0.1` by your `<local host>`. Port: `27017`. Database Name: `kinoprogramm`.
 4. Under tab "Authentication", `Scram-Sha-1` as Authentication Type, Username: `root`, Password: `12345`, Authentication DB: leave empty.
 5. Click on "Save", and click on "Connect".
 
-To see stored data: 
+To see stored data:
 1. Go to "Collections" -> "kinos".
 2. Example Query: find, Selector: `{"name": "Bali-Kino"}`, Explain: (unchecked), Options: (leave empty).
 3. Execute.
 
-To query data from the shell: 
+To query data from the shell:
 1. Go to "Tools" -> "Shell"
 2. Insert in the upper field:
 
@@ -168,7 +168,7 @@ Can you tell which SQL commands these correspond to?
 
 ## You could also...
 
-Remove all scraped data, from the mongo client:
+Remove all scraped data, from the Mongo client:
 
 ```bash
 `db.kinos.remove({})`
@@ -188,7 +188,7 @@ docker-compose down
 
 Now, you can't connect anymore to the database, since it is down. You won't see the mongoclient either (port 3300). Data is lost.
 
-> **Important**: if you made changes to the code, you have to build again: 
+> **Important**: if you made changes to the code, you have to build again:
 
 ```
 docker-compose build

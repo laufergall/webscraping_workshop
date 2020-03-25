@@ -2,7 +2,7 @@
 
 The goal of this task is to get scrapy to run and scrape the current cinema program from [berlin.de](https://www.berlin.de/kino/_bin/index.php). We want to scrape different pieces of information from every cinema: name, description, address, contact, prices, and shows (movie titles and times).
 
-> **NOTE**: In this workshop, we will prepend `http://web.archive.org/web/20191102035415/` to the cinema detail urls. This is because of the berlin.de website currently not showing any movie titles due to corona virus. Hence, we will retrieve a cinema program from 2nd November 2019 instead of the current one.
+> **NOTE**: In this workshop, we will prepend `http://web.archive.org/web/20191102035415/` to the cinema detail URLs. This is because of the berlin.de website currently not showing any movie titles due to corona virus. Hence, we will retrieve a cinema program from 2nd November 2019 instead of the current one.
 
 Take a look at the main berlin.de cinemas [website](https://www.berlin.de/kino/_bin/index.php), from where we get all cinema codes.
 
@@ -15,7 +15,7 @@ And [this website](http://web.archive.org/web/20190706130635/https://www.berlin.
 
 Before starting any scraping job we have to follow best practices to **scrape politely**:
 * Check the Terms of Use ("Nutzungsbedingungen" or "Allgemeine Geschäftsbedingungen (AGB)" in German). In the case of berlin.de, we may scrape if we keep the data **only for private use** and if we store the **data in one system** only.
-* Check robots.txt . In our case, [Berlin.de's robots.txt](https://www.berlin.de/robots.txt). Noone is allowed to scrape from paths in the form `/*/(S(*))`. For us this is fine, since the websites we want to scrape are:
+* Check robots.txt . In our case, [Berlin.de's robots.txt](https://www.berlin.de/robots.txt). Nobody is allowed to scrape from paths in the form `/*/(S(*))`. For us this is fine, since the websites we want to scrape are:
 
 `https://www.berlin.de/kino/_bin/azfilm.php`
 
@@ -28,12 +28,12 @@ and
 
 1. [Clone or download main project](#step1)
 2. [Install scrapy project requirements](#step2)
-3. [Scrape data and write to json file](#step3)
-
+3. [Scrape data and write to JSON file](#step3)
 
 ## 1. Clone or download main project <a name="step1"></a>
 
-&#8594; First, **clone or download** [this repository](https://github.com/laufergall/movies-knowledgegraph/tree/workshop).
+&#8594; First, **download** [this zip file](https://github.com/laufergall/movies-knowledgegraph/archive/workshop.zip)
+that contains a base project for you to work on it.
 
 We will be making changes to different files in this project.
 
@@ -44,7 +44,20 @@ We will be making changes to different files in this project.
 
 You need Python 3.7.4.
 
-&#8594; **Install requirements.txt** (under `<project-dir>/scrapy`). If you have conda installed, then:
+&#8594; **Install requirements.txt** (under `<project-dir>/scrapy`).
+
+If you are not using conda, you can simply create and activate a virtual environment:
+
+```bash
+python -m venv webscraping
+source webscraping/bin/activate  # for macOS and Linux
+webscraping/Scripts/activate.bat  # for Windows
+
+cd <project-dir>/scrapy
+pip install -r requirements.txt
+```
+
+If you have conda installed, then:
 
 ```bash
 conda create -n webscraping python=3.7.4
@@ -54,8 +67,7 @@ cd <project-dir>/scrapy
 pip install -r requirements.txt
 ```
 
-
-## 3. Scrape data and write to json file <a name="step3"></a>
+## 3. Scrape data and write to JSON file <a name="step3"></a>
 
 &#8594; You can **start the spider** by just:
 
@@ -66,7 +78,7 @@ scrapy crawl kinoprogramm -o ../data/kinoprogramm.json
 
 Data will be written to the file specified with the `-o` parameter.
 
-The `parse()` method receives as input a response from the start_url: https://www.berlin.de/kino/_bin/azfilm.php. The method extracts hrefs for websites corresponding to each cinema, like for instance [Acud Kino](https://www.berlin.de/kino/_bin/kinodetail.php/30151). Each cinema website is parsed separately, by the method `parse_cinema()`.
+The `parse()` method receives as input a response from the start_url: https://www.berlin.de/kino/_bin/azfilm.php. The method extracts hrefs for websites corresponding to each cinema, like for instance [Acud Kino](http://web.archive.org/web/20190706130635/https://www.berlin.de/kino/_bin/kinodetail.php/30151). Each cinema website is parsed separately, by the method `parse_cinema()`.
 
 &#8594; Verify that the data in the file looks fine with the right information from every cinema, which we also see online. Look for the different cinemas in the main berlin.de cinemas [website](https://www.berlin.de/kino/_bin/index.php), using the dropdown next to "Kino".
 
