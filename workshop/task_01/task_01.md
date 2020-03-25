@@ -29,7 +29,8 @@ In this workshop, we will prepend `http://web.archive.org/web/20191102035415/` t
 
 ## Clone or download main project <a name="step1"></a>
 
-&#8594; First, **clone or download** [this repository](https://github.com/laufergall/movies-knowledgegraph/tree/workshop).
+&#8594; First, **download** [this zip file](https://github.com/laufergall/movies-knowledgegraph/archive/workshop.zip)
+that contains a base project for you to work on it.
 
 We will be making changes to different files in this project.
 
