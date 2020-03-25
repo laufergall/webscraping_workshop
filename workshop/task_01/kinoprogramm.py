@@ -1,5 +1,5 @@
 """
-Definition of spyder to retrieve Cinema instances
+Definition of spider to retrieve Cinema instances
 """
 
 import logging
@@ -16,7 +16,7 @@ logger = logging.getLogger('KinoSpider')
 
 
 class KinoSpider(scrapy.Spider):
-    
+
     name = 'kinoprogramm'
     start_urls = ['https://www.berlin.de/kino/_bin/azfilm.php']
 
@@ -98,7 +98,7 @@ class KinoSpider(scrapy.Spider):
             movies_times.append(times)
 
         cinema = Cinema(
-            
+
             name=self.get_name(response),
             description=self.get_description(response),
             address=Address(street=self.get_street(response),
