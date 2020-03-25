@@ -12,15 +12,14 @@ The containers for the database and for the client will be up permanently. Diffe
 3. [Adapt scrapy pipeline](#step3)
 4. [Start the three containers](#step4)
 5. [Connect to db from Mongoclient](#step5)
-6. [Connect to db from Robo3T](#step6)
 
-## Prepare docker <a name="step1"></a>
+## 1. Prepare docker <a name="step1"></a>
 
 You should have already installed one of these:
 * [Docker Toolbox for Windows](https://docs.docker.com/toolbox/toolbox_install_windows/#step-3-verify-your-installation)
 * [Docker Toolbox for Mac](https://docs.docker.com/toolbox/toolbox_install_mac/#step-3-verify-your-installation)
-* [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/)
-* [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/)
+* (if your system meets the requirements) [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/) Do not select the option to use Windows containers.
+* (if your system meets the requirements) [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/)
 * If you are on Linux (CentOS, Debian, Fedora, Oracle Linux, RHEL, SUSE, and Ubuntu), then you have the [Docker Engine](https://docs.docker.com/install/)
 
 &#8594; If you have Docker Toolbox, **launch** the Docker QuickStart Terminal.
@@ -43,25 +42,27 @@ You should see in the output:
 docker run --detach --publish=80:80 --name=webserver nginx
 ```
 
+You might need to switch to linux containers for that to work. You see the option by clicking on the whale icon (Docker Desktop).
+
 &#8594; In your browser, **navigate to** either:
 * `http://192.168.99.100/` if you have Docker Toolbox
 * `http://localhost/` if you have Docker Desktop
 
 You should see the page: `Welcome to nginx! If you see this page,...`.
 
-**Important** if you have Docker Toolbox: `192.168.99.100` if your docker-machine ip. Check if you have a different one with the command: `docker-machine ip`. For now on, instead of `localhost`, your local host is your docker-machine ip.
+> **Important**: if you have Docker Toolbox: `192.168.99.100` if your docker-machine ip. Check if you have a different one with the command: `docker-machine ip`. For now on, instead of `localhost`, your local host is your docker-machine ip.
 
 Now, you're all set with docker!
 
 
-## Add docker-compose.yml <a name="step2"></a>
+## 2. Add docker-compose.yml <a name="step2"></a>
 
-&#8594; **Copy** the `docker-compose.yml` file of this folder to your root project directory `<project-dir>/` (same level as `.gitignore`).
+&#8594; **Copy** the file [docker-compose.yml](docker-compose.yml) to your root project directory `<project-dir>/` (same level as `.gitignore`).
 
 The docker-compose file is defining the three containers: `mongodb`, `mongoclient`, and `scrapy`. Note that we are indicating where to get or build docker images from, ports (in case of `mongodb` and `mongoclient`), and environment variables in case of `scrapy`, needed for the connection to the database.
 
 
-## Adapt scrapy pipeline <a name="step3"></a>
+## 3. Adapt scrapy pipeline <a name="step3"></a>
 
 In the scrapy pipelines file (`<project-dir>/scrapy/kinoprogramm/pipelines.py`), we define how our scraped data should be output. 
 
@@ -69,7 +70,7 @@ In the scrapy settings file (`<project-dir>/scrapy/kinoprogramm/settings.py`), w
 
 Before (in Task 1), we were using the class `KinoprogrammPipeline` of pipelines to write to a json file. Now, we will use the class `MongoDBPipeline` to write to mongodb (which will be up in a docker container).
 
-&#8594; **Replace** the `settings.py` file in `<project-dir>/scrapy/kinoprogramm/` by the one in this folder. The new lines (from line 71 to line 80) are: 
+&#8594; **Add these lines** to `<project-dir>/scrapy/kinoprogramm/settings.py` starting by line 72.
 
 ```python
 ITEM_PIPELINES = {
@@ -84,7 +85,16 @@ MONGODB_DB = os.environ.get('MONGODB_DB', 'kinoprogramm')
 MONGODB_COLLECTION = os.environ.get('MONGODB_COLLECTION', 'kinos')
 ```
 
-## Start the three containers <a name="step4"></a>
+&#8594; **Delete these lines** (68 to 70):
+
+```python
+ITEM_PIPELINES = {
+    'kinoprogramm.pipelines.KinoprogrammPipeline': 300,
+}
+```
+
+
+## 4. Start the three containers <a name="step4"></a>
 
 &#8594; To **start the containers**, we just build the images (with the current code) with:
 
@@ -117,7 +127,7 @@ docker ps
 You should see a table-like output with `CONTAINER ID`, `IMAGE`, `COMMAND`, `CREATED`, `STATUS`, `PORTS` and `NAMES` for all containers you have up. 
 
 
-## Connect to db from Mongoclient <a name="step5"></a>
+## 5. Connect to db from Mongoclient <a name="step5"></a>
 
 We are going to verify that we have collected our current cinema program and has been stored in mongo db. Our [Nosqlclient](https://github.com/nosqlclient/nosqlclient) (formerly mongoclient) container should be up, as we checked in last step.
 
@@ -156,22 +166,12 @@ db.kinos.find( { name: /Cinemax/, "shows.title": /Bad Boys/ }, {name: 1, "addres
 Can you tell which SQL commands these correspond to?
 
 
-## Connect to db from Robo3T <a name="step6"></a>
-
-You can perform this step if you have installed [Robo 3T](https://robomongo.org/).
-
-1. "File" -> "Connect" -> "Create".
-2. "Connection" tab: Name: `connect to kinoprogramm`, Address: `<local host>`, Port: `27017`.
-3. "Authentication" tab: Database: `kinoprogramm`, User Name: `root`, Pasword: `12345`, Auth Mechanism: `SCRAM-SHA-1`.
-4. Example query: `db.getCollection('kinos').find({})`
-
-
 ## You could also...
 
 Remove all scraped data, from the mongo client:
 
 ```bash
-`db.getCollection('kinos').remove({})`
+`db.kinos.remove({})`
 ```
 
 Scrape again (start scraping job, which will stop after finished):
@@ -188,7 +188,7 @@ docker-compose down
 
 Now, you can't connect anymore to the database, since it is down. You won't see the mongoclient either (port 3300). Data is lost.
 
-If you made changes to the code, you have to build again: 
+> **Important**: if you made changes to the code, you have to build again: 
 
 ```
 docker-compose build

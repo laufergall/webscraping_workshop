@@ -9,7 +9,6 @@ Technical:
 * Python 3.7.4 (not tested with lower Python versions)
 * An IDE, e.g. Spyder or PyCharm. You can follow [this guide](https://github.com/laufergall/pythonsql_workshop/blob/master/docs/get_started.md) to get python, anaconda environments, and an IDE set up.
 * Docker Desktop or Docker Toolbox, whichever works in your system, [this post](https://nickjanetakis.com/blog/should-you-use-the-docker-toolbox-or-docker-for-mac-windows) can helpyou decide. Follow the [docker documentation](https://docs.docker.com/get-started/) to install Docker and verify your installation.
-* [Robo 3T](https://robomongo.org/download) (formerly Robomongo)
 
 Background knowledge:
 * Basic Python
