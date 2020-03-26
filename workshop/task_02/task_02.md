@@ -57,7 +57,7 @@ Now, you're all set with docker!
 
 ## 2. Add docker-compose.yml <a name="step2"></a>
 
-&#8594; **Copy** the file [docker-compose.yml](docker-compose.yml) to your root project directory `<project-dir>/` (same level as `.gitignore`).
+&#8594; **Download** the file [docker-compose.yml](docker-compose.yml) and **copy** it to your root project directory `<project-dir>/` (same level as `.gitignore`).
 
 The docker-compose file is defining the three containers: `mongodb`, `mongoclient`, and `scrapy`. Note that we are indicating where to get or build docker images from, ports (in case of `mongodb` and `mongoclient`), and environment variables in case of `scrapy`, needed for the connection to the database.
 
@@ -108,9 +108,9 @@ cd <project-dir>
 docker-compose build
 ```
 
-You would have to build again every time you make changes to the code.
+> **Important**: You would have to build again every time you make changes to the code.
 
-And, when all is ready, up with:
+And, when the build has finished, up with:
 
 ```bash
 docker-compose up
@@ -142,7 +142,7 @@ We are going to verify that we have collected our current cinema program and has
 
 To see stored data:
 1. Go to "Collections" -> "kinos".
-2. Example Query: find, Selector: `{"name": "Bali-Kino"}`, Explain: (unchecked), Options: (leave empty).
+2. Leave all defaults. Scroll down.
 3. Execute.
 
 To query data from the shell:
@@ -160,10 +160,12 @@ db.kinos.find( { name: "Bali-Kino" } )
 db.kinos.find( { name: { $in: [ "Bali-Kino", "Acud Kino" ] } } )
 db.kinos.find( { name: /Alex/ }, {name: 1, "shows.title": 1, _id: 0})
 db.kinos.find( { "shows.title": /Eiskönigin/ }, {name: 1, _id: 0})
-db.kinos.find( { name: /Cinemax/, "shows.title": /Bad Boys/ }, {name: 1, "address.street":1, "shows.$":1, _id: 0}).pretty()
+db.kinos.find( { name: /Cinemax/, "shows.title": /Avengers/ }, {name: 1, "address.street":1, "shows.$":1, _id: 0}).pretty()
 ```
 
-Can you tell which SQL commands these correspond to?
+Can you tell which SQL statements these correspond to?
+
+Try to construct some MongoDB queries yourself. [Here](https://docs.mongodb.com/manual/tutorial/query-documents/) you can learn how to.
 
 
 ## You could also...
@@ -188,7 +190,7 @@ docker-compose down
 
 Now, you can't connect anymore to the database, since it is down. You won't see the mongoclient either (port 3300). Data is lost.
 
-> **Important**: if you made changes to the code, you have to build again:
+If you made changes to the code, you have to build again:
 
 ```
 docker-compose build

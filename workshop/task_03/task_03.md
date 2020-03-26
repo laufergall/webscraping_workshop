@@ -16,23 +16,23 @@ We want to prepare queries to retrieve data that our user will be interested in.
 
 ## 1. Add backend service to docker-compose.yml <a name="step1"></a>
 
-&#8594; **Add these lines** to the docker-compose.yml file. Note that it has to be indented under `services:` (at the same level as `scrapy`, `mongodb`, and `mongoclient`):
+&#8594; **Add these lines** to the docker-compose.yml file. Note that it has to be indented under `services:` (at the same level as `mongodb`, `mongoclient`, and `scrapy`):
 
 ```
-backend:
-build: ./backend
-container_name: backend
-ports:
-  - 8001:8001
-depends_on:
-  - mongodb
-environment:
-  MONGODB_HOST: mongodb
-  MONGODB_PORT: 27017
-  MONGODB_USERNAME: root
-  MONGODB_PASSWORD: 12345
-  MONGODB_DB: kinoprogramm
-  MONGODB_COLLECTION:  kinos
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - 8001:8001
+    depends_on:
+      - mongodb
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      MONGODB_USERNAME: root
+      MONGODB_PASSWORD: 12345
+      MONGODB_DB: kinoprogramm
+      MONGODB_COLLECTION:  kinos
 ```
 
 So, your docker-compose has to look like this one: [docker-compose.yml](docker-compose.yml).
@@ -40,6 +40,7 @@ So, your docker-compose has to look like this one: [docker-compose.yml](docker-c
 &#8594; **Build and start this container** by adding it to the others which are already up. On another terminal:
 
 ```
+cd <project-dir>
 docker-compose up --build backend
 ```
 
@@ -60,20 +61,22 @@ The [Swagger UI](https://flask-restplus.readthedocs.io/en/stable/swagger.html) a
 
 Of course, you can also make GET requests with curl, yet it is not so friendly. 
 
-In your terminal: 
+In your terminal, if you have curl installed:
 
 ```bash
 curl -X GET http://<local host>:8001/movies/titles
 
-curl -X GET -d contains=elias http://<local host>:8001/movies/titles
+curl -X GET -d contains=das http://<local host>:8001/movies/titles
 ```
 
 Or, in the browser:
 
 ```bash
-curl -X GET http://<local host>:8001/movies/titles
+http://<local host>:8001/movies/titles
+
+http://<local host>:8001/movies/titles?contains=das
 ```
 
-&#8594; Step on the toes of our user and **use these endpoints** to replicate her "journey" from "I want to watch some new movie at the cinema" to "I know when to go where and for which movie".
+&#8594; Step on the toes of our user and **use these endpoints**, under **/movies/** and under **/cinemas/**, to replicate her "journey" from "I want to watch some new movie at the cinema" to "I know when to go where and for which movie".
 
 Can you think of other use cases? Do you imagine how the frontend can look like?
