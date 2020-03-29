@@ -37,7 +37,7 @@ that contains a base project for you to work on it.
 
 We will be making changes to different files in this project.
 
-> **Important**: your `<project-dir>` is the root project folder. If you `cd` to `<project-dir>`, you should see the folders `backend`, `mongo`, `scrapy`, and the files `.gitignore` and `README.md`.
+> **Important**: your `<project-dir>` is the path to the root project folder, in my case: `C:\Users\Laura\Downloads\movies-knowledgegraph-workshop`. If you `cd` to where you have `<project-dir>`, you should see the folders `backend`, `mongo`, `scrapy`, and the files `.gitignore` and `README.md`.
 
 
 ## 2. Install scrapy project requirements <a name="step2"></a>
@@ -67,6 +67,9 @@ cd <project-dir>/scrapy
 pip install -r requirements.txt
 ```
 
+Note that you might need backward slashes (`\`).
+
+
 ## 3. Scrape data and write to JSON file <a name="step3"></a>
 
 &#8594; You can **start the spider** by just:
@@ -76,7 +79,7 @@ cd <project-dir>/scrapy/kinoprogramm
 scrapy crawl kinoprogramm -o ../data/kinoprogramm.json
 ```
 
-Data will be written to the file specified with the `-o` parameter.
+Data will be written to the file specified with the `-o` parameter. In our case: `<project-dir>/scrapy/data/kinoprogramm.json`.
 
 The `parse()` method receives as input a response from the start_url: https://www.berlin.de/kino/_bin/azfilm.php. The method extracts hrefs for websites corresponding to each cinema, like for instance [Kant Kino](http://web.archive.org/web/20191102035415/https://www.berlin.de/kino/_bin/kinodetail.php/30208). Each cinema website is parsed separately, by the method `parse_cinema()`.
 

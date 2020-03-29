@@ -57,7 +57,7 @@ Now, you're all set with docker!
 
 ## 2. Add docker-compose.yml <a name="step2"></a>
 
-&#8594; **Download** the file [docker-compose.yml](docker-compose.yml) and **copy** it to your root project directory `<project-dir>/` (same level as `.gitignore`).
+&#8594; **Copy and paste** the lines of the file [docker-compose.yml](docker-compose.yml) into a file called `docker-compose.yml`, and **save it** to your root project directory `<project-dir>/`. Remember, this is the folder called `movies-knowledgegraph-workshop`.
 
 The docker-compose file is defining the three containers: `mongodb`, `mongoclient`, and `scrapy`. Note that we are indicating where to get or build docker images from, ports (in case of `mongodb` and `mongoclient`), and environment variables in case of `scrapy`, needed for the connection to the database.
 
@@ -70,7 +70,7 @@ In the scrapy settings file (`<project-dir>/scrapy/kinoprogramm/settings.py`), w
 
 Before (in Task 1), we were using the class `KinoprogrammPipeline` of pipelines to write to a JSON file. Now, we will use the class `MongoDBPipeline` to write to mongodb (which will be up in a docker container).
 
-&#8594; **Add these lines** to `<project-dir>/scrapy/kinoprogramm/settings.py` starting by line 72.
+&#8594; **Insert these lines** to `<project-dir>/scrapy/kinoprogramm/settings.py`, in the space between Line 71 and Line 72.
 
 ```python
 ITEM_PIPELINES = {
@@ -126,17 +126,27 @@ docker ps
 
 You should see a table-like output with `CONTAINER ID`, `IMAGE`, `COMMAND`, `CREATED`, `STATUS`, `PORTS` and `NAMES` for all containers you have up.
 
+If you do not see the two containers named `mongodb` and `mongoclient` up, you probably need to build and launch again: 
+
+```
+docker-compose down
+
+docker-compose build
+
+docker-compose up
+```
+
 
 ## 5. Connect to db from Mongoclient <a name="step5"></a>
 
 We are going to verify that we have collected our current cinema program and has been stored in mongo db. Our [Nosqlclient](https://github.com/nosqlclient/nosqlclient) (formerly mongoclient) container should be up, as we checked in last step.
 
-&#8594; In your browser, **go to** `http://<local host>:3300/`. As we mentioned [before](# Prepare docker), `<local host>` is either `localhost` or your docker-machine ip, depending on your docker installation.
+&#8594; In your browser, **go to** `http://<local host>:3300/`. As we mentioned [before](#step1), `<local host>` is either `localhost` or your docker-machine ip, depending on your docker installation.
 
 &#8594; To **connect**:
 1. Click on "Connect" (up-right corner).
 2. Click on "Edit" the default connection.
-3. Clear connection URL. Under the "Connection" tab, replace Host `127.0.0.1` by your `<local host>`. Port: `27017`. Database Name: `kinoprogramm`.
+3. Clear connection URL. Under the "Connection" tab, replace Host `127.0.0.1` by your `mongodb`. Port: `27017`. Database Name: `kinoprogramm`.
 4. Under tab "Authentication", `Scram-Sha-1` as Authentication Type, Username: `root`, Password: `12345`, Authentication DB: leave empty.
 5. Click on "Save", and click on "Connect".
 
@@ -166,6 +176,8 @@ db.kinos.find( { name: /Cinemax/, "shows.title": /Avengers/ }, {name: 1, "addres
 Can you tell which SQL statements these correspond to?
 
 Try to construct some MongoDB queries yourself. [Here](https://docs.mongodb.com/manual/tutorial/query-documents/) you can learn how to.
+
+If for some reason you cannot connect to the database using this client, it would be possible to do so from another client for mongodb, like for instance [Robo 3T](https://robomongo.org/). The connection setup would be the same as the one described for mongoclient, except that you will need to give your `<local host>` as host (instead of `mongodb`).
 
 
 ## You could also...

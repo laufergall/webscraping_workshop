@@ -44,7 +44,7 @@ cd <project-dir>
 docker-compose up --build backend
 ```
 
-See that this container is up by:
+On another terminal, see that the backend container is done with building and already up by:
 
 ```
 docker ps
@@ -57,7 +57,7 @@ The [Swagger UI](https://flask-restplus.readthedocs.io/en/stable/swagger.html) a
 
 &#8594; To access the Swagger UI **open your browser and navigate** to `http://<local host>:8001`, where, as always, `<local host>` is `localhost` or your `docker-machine ip`.
 
-&#8594; **Call the GET endpoint** `/movies/titles` to retrieve all movie titles currently shown in Berlin cinemas. You can also filter by indicating a sub-string which must be included in the title. 
+&#8594; **Call the GET endpoint** `/movies/titles` to retrieve all movie titles currently shown in Berlin cinemas. Clicking on movies, then on "Try it out" under "/movies/titles", and then on "Execute". Optionally, you can also filter by indicating (as the "contains" parameter) a sub-string which must be included in the title. You should see a Response, hopefully with Code 200!
 
 Of course, you can also make GET requests with curl, yet it is not so friendly. 
 
