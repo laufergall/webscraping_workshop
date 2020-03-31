@@ -146,14 +146,14 @@ We are going to verify that we have collected our current cinema program and has
 &#8594; To **connect**:
 1. Click on "Connect" (up-right corner).
 2. Click on "Edit" the default connection.
-3. Clear connection URL. Under the "Connection" tab, replace Host `127.0.0.1` by your `mongodb`. Port: `27017`. Database Name: `kinoprogramm`.
+3. Clear connection URL. Under the "Connection" tab, replace Host `127.0.0.1` by `mongodb`. Port: `27017`. Database Name: `kinoprogramm`.
 4. Under tab "Authentication", `Scram-Sha-1` as Authentication Type, Username: `root`, Password: `12345`, Authentication DB: leave empty.
 5. Click on "Save", and click on "Connect".
 
 To see stored data:
 1. Go to "Collections" -> "kinos".
 2. Leave all defaults. Scroll down.
-3. Execute.
+3. Execute. Here you can browse the data. 
 
 To query data from the shell:
 1. Go to "Tools" -> "Shell"
@@ -175,9 +175,9 @@ db.kinos.find( { name: /Cinemax/, "shows.title": /Avengers/ }, {name: 1, "addres
 
 Can you tell which SQL statements these correspond to?
 
-Try to construct some MongoDB queries yourself. [Here](https://docs.mongodb.com/manual/tutorial/query-documents/) you can learn how to.
+Try to construct some MongoDB queries yourself. [Here](https://docs.mongodb.com/manual/tutorial/query-documents/) you can learn how to. Check back in `Collections` for information of data structure. Try for example to find all kinos that play movies in the original langugage, aka with `OmU` in the title of the show.   
 
-If for some reason you cannot connect to the database using this client, it would be possible to do so from another client for mongodb, like for instance [Robo 3T](https://robomongo.org/). The connection setup would be the same as the one described for mongoclient, except that you will need to give your `<local host>` as host (instead of `mongodb`).
+**Troubleshooting**: If for some reason you cannot connect to the database using this client, it would be possible to do so from another client for mongodb, like for instance [Robo 3T](https://robomongo.org/). The connection setup would be the same as the one described for mongoclient, except that you will need to give your `<local host>` as host (instead of `mongodb`).
 
 
 ## You could also...
