@@ -82,7 +82,7 @@ scrapy crawl kinoprogramm -o ../data/kinoprogramm.json
 Data will be written to the file specified with the `-o` parameter. In our case: `<project-dir>/scrapy/data/kinoprogramm.json`.
 
 
-The main code resposible for scraping lies in `scrapy/kinoprogramm/spiders/kinoprogramm.py` file. Open the file and take a look. 
+The main code resposible for scraping lines in `scrapy/kinoprogramm/spiders/kinoprogramm.py` file. Open the file and take a look. 
 The `parse()` method receives as input a response from the start_url: https://www.berlin.de/kino/_bin/azfilm.php. The method extracts hrefs for websites corresponding to each cinema, like for instance [Kant Kino](http://web.archive.org/web/20191102035415/https://www.berlin.de/kino/_bin/kinodetail.php/30208). Each cinema website is parsed separately, by the method `parse_cinema()`.
 
 &#8594; Open the file with the scraped data `scrapy/data/kinoprogramm.json` to verify that the data in the file looks fine with the right information from every cinema, which we also see online. Look for the different cinemas in the main berlin.de cinemas [website](https://www.berlin.de/kino/_bin/index.php), using the dropdown next to "Kino".
