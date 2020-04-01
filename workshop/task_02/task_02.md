@@ -21,7 +21,7 @@ You should have already installed one of these:
 * (if your system meets the requirements) [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/) Do not select the option to use Windows containers.
 * (if your system meets the requirements) [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/)
 * If you are on Linux, the installation will depend on your distribution.
-  * Ubuntu: Old versions of docker were called `docker`, `docker.io` or `docker-engine`, so if you install them, you need to uninstall them.
+  * Ubuntu: Old versions of docker were called `docker`, `docker.io` or `docker-engine`, so if you installed them, you need to uninstall them.
     Currently, the package is called `docker-ce`, so you can run a:
     ```bash
     sudo apt-get install docker-ce
