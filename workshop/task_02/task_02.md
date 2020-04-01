@@ -20,7 +20,23 @@ You should have already installed one of these:
 * [Docker Toolbox for Mac](https://docs.docker.com/toolbox/toolbox_install_mac/#step-3-verify-your-installation)
 * (if your system meets the requirements) [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/) Do not select the option to use Windows containers.
 * (if your system meets the requirements) [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/)
-* If you are on Linux (CentOS, Debian, Fedora, Oracle Linux, RHEL, SUSE, and Ubuntu), then you have the [Docker Engine](https://docs.docker.com/install/)
+* If you are on Linux, the installation will depend on your distribution.
+  * Ubuntu: Old versions of docker were called `docker`, `docker.io` or `docker-engine`, so if you installed them, you need to uninstall them.
+    Currently, the package is called `docker-ce`, so you can run a:
+    ```bash
+    sudo apt-get install docker-ce
+    ```
+    to install the Docker Engine (Community package).
+  * Fedora: Old versions were called `docker` or `docker-engine`, you need to uninstall them if you have them.
+    Currently the package is called `docker-ce`, so you would need to:
+    ```bash
+    sudo dnf install docker-se
+    ```
+  * Arch Linux/Manjaro: Install the `docker` package:
+    ```bash
+    sudo pacman -S docker
+    ```
+  More information related to Linux instalaltion can be found in the docker [official documentation](https://docs.docker.com/install/).
 
 &#8594; If you have Docker Toolbox, **launch** the Docker QuickStart Terminal.
 
@@ -126,7 +142,7 @@ docker ps
 
 You should see a table-like output with `CONTAINER ID`, `IMAGE`, `COMMAND`, `CREATED`, `STATUS`, `PORTS` and `NAMES` for all containers you have up.
 
-If you do not see the two containers named `mongodb` and `mongoclient` up, you probably need to build and launch again: 
+If you do not see the two containers named `mongodb` and `mongoclient` up, you probably need to build and launch again:
 
 ```
 docker-compose down
@@ -153,7 +169,7 @@ We are going to verify that we have collected our current cinema program and has
 To see stored data:
 1. Go to "Collections" -> "kinos".
 2. Leave all defaults. Scroll down.
-3. Execute. Here you can browse the data. 
+3. Execute. Here you can browse the data.
 
 To query data from the shell:
 1. Go to "Tools" -> "Shell"
@@ -175,7 +191,7 @@ db.kinos.find( { name: /Cinemax/, "shows.title": /Avengers/ }, {name: 1, "addres
 
 Can you tell which SQL statements these correspond to?
 
-Try to construct some MongoDB queries yourself. [Here](https://docs.mongodb.com/manual/tutorial/query-documents/) you can learn how to. Check back in `Collections` for information of data structure. Try for example to find all kinos that play movies in the original langugage, aka with `OmU` in the title of the show.   
+Try to construct some MongoDB queries yourself. [Here](https://docs.mongodb.com/manual/tutorial/query-documents/) you can learn how to. Check back in `Collections` for information of data structure. Try for example to find all kinos that play movies in the original langugage, aka with `OmU` in the title of the show.
 
 **Troubleshooting**: If for some reason you cannot connect to the database using this client, it would be possible to do so from another client for mongodb, like for instance [Robo 3T](https://robomongo.org/). The connection setup would be the same as the one described for mongoclient, except that you will need to give your `<local host>` as host (instead of `mongodb`).
 
