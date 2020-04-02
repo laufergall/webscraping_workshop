@@ -8,7 +8,7 @@ Take a look at the main berlin.de cinemas [website](https://www.berlin.de/kino/_
 
 This is a cinema [website](https://www.berlin.de/kino/_bin/kinodetail.php/32139) with the cinema details and current cinema program (might be empty due to corona virus). In this example: "CineStar Cubix am Alexanderplatz", (cinema code: "32139").
 
-And [this website](http://web.archive.org/web/20191102035415/https://www.berlin.de/kino/_bin/kinodetail.php/32139) also corresponds to "CinemaxX Berlin", yet we get it from web.archive.org, from 2nd November 2019, so that we can scrape movie titles and show times. Depending on when the particular cinema website was stored in web.archive.org, we might get movies from older dates for other cinemas.
+And [this website](http://web.archive.org/web/20191102035415/https://www.berlin.de/kino/_bin/kinodetail.php/32139) also corresponds to "CineStar Cubix am Alexanderplatz", yet we get it from web.archive.org, from 2nd November 2019, so that we can scrape movie titles and show times. Depending on when the particular cinema website was stored in web.archive.org, we might get movies from older dates for other cinemas.
 
 
 # Scraping politeness
@@ -26,11 +26,11 @@ and
 
 # Steps:
 
-1. [Clone or download main project](#step1)
+1. [Download main project](#step1)
 2. [Install scrapy project requirements](#step2)
 3. [Scrape data and write to JSON file](#step3)
 
-## 1. Clone or download main project <a name="step1"></a>
+## 1. Download main project <a name="step1"></a>
 
 &#8594; First, **download** [this zip file](https://github.com/laufergall/movies-knowledgegraph/archive/workshop.zip)
 that contains a base project for you to work on it.
@@ -42,7 +42,7 @@ We will be making changes to different files in this project.
 
 ## 2. Install scrapy project requirements <a name="step2"></a>
 
-You need Python 3.7.4.
+Make sure you have Python 3.6+ installed.
 
 &#8594; **Install requirements.txt** (under `<project-dir>/scrapy`).
 
@@ -92,3 +92,5 @@ Remember that the name, description, address, contact, and prices are there; onl
 Example:
 * Cinema details url ("Kant Kino", cinema code "30208"): `https://www.berlin.de/kino/_bin/kinodetail.php/30208`
 * Same cinema, with older movies (from 29th Sept. 2019): `http://web.archive.org/web/20191102035415/https://www.berlin.de/kino/_bin/kinodetail.php/30208`
+
+[Continue to](../task_02/task_02.md) Task 2.

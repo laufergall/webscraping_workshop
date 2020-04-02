@@ -16,10 +16,13 @@ The containers for the database and for the client will be up permanently. Diffe
 ## 1. Prepare docker <a name="step1"></a>
 
 You should have already installed one of these:
-* [Docker Toolbox for Windows](https://docs.docker.com/toolbox/toolbox_install_windows/#step-3-verify-your-installation)
-* [Docker Toolbox for Mac](https://docs.docker.com/toolbox/toolbox_install_mac/#step-3-verify-your-installation)
-* (if your system meets the requirements) [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/) Do not select the option to use Windows containers.
-* (if your system meets the requirements) [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/)
+
+* If you are on Mac:
+  * If your system meets the [requirements](https://docs.docker.com/docker-for-mac/install/#system-requirements): [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/)
+  * Otherwise: [Docker Toolbox for Mac](https://docs.docker.com/toolbox/toolbox_install_mac/#step-3-verify-your-installation)
+* If you are on Windows:
+  * If your system meets the [requirements](https://docs.docker.com/docker-for-windows/install/#system-requirements): [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/). Do not select the option to use Windows containers.
+  * Otherwise: [Docker Toolbox for Windows](https://docs.docker.com/toolbox/toolbox_install_windows/#step-3-verify-your-installation)
 * If you are on Linux, the installation will depend on your distribution.
   * Ubuntu: Old versions of docker were called `docker`, `docker.io` or `docker-engine`, so if you installed them, you need to uninstall them.
     Currently, the package is called `docker-ce`, so you can run a:
@@ -193,7 +196,7 @@ Can you tell which SQL statements these correspond to?
 
 Try to construct some MongoDB queries yourself. [Here](https://docs.mongodb.com/manual/tutorial/query-documents/) you can learn how to. Check back in `Collections` for information of data structure. Try for example to find all kinos that play movies in the original langugage, aka with `OmU` in the title of the show.
 
-**Troubleshooting**: If for some reason you cannot connect to the database using this client, it would be possible to do so from another client for mongodb, like for instance [Robo 3T](https://robomongo.org/). The connection setup would be the same as the one described for mongoclient, except that you will need to give your `<local host>` as host (instead of `mongodb`).
+**Troubleshooting**: If for some reason you cannot connect to the database using this client, it would be possible to do so from another client for mongodb, like for instance [Robo 3T](https://robomongo.org/). The connection setup would be the same as the one described for mongoclient, except that you will need to give your `<local host>` as host (instead of `mongodb`), since Robo 3T will not be running as a service in the docker-compose.
 
 
 ## You could also...
@@ -206,13 +209,13 @@ Remove all scraped data, from the Mongo client:
 
 Scrape again (start scraping job, which will stop after finished):
 
-```
+```bash
 docker-compose up scrapy
 ```
 
 Stop all containers from docker-compose:
 
-```
+```bash
 docker-compose down
 ```
 
@@ -220,12 +223,14 @@ Now, you can't connect anymore to the database, since it is down. You won't see 
 
 If you made changes to the code, you have to build again:
 
-```
+```bash
 docker-compose build
 ```
 
-And launch the containers again, as we already did [before](# Start the three containers).
+And launch the containers again, as we already did [before](#step4).
 
-```
+```bash
 docker-compose up
 ```
+
+[Continue to](../task_03/task_03.md) Task 3.

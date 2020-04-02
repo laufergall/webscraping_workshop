@@ -1,8 +1,8 @@
 # Call REST API endpoints to retrieve information
 
-We add a REST API backend so that we can retrieve the data in MongoDB without having to use a db client. 
+We add a REST API backend so that we can retrieve the data in MongoDB without having to use a db client, and with our "customized" endpoints. 
 
-We want to prepare queries to retrieve data that our user will be interested in. The use case we consider is:
+We want to prepare queries to retrieve data that our users will be interested in. The use case we consider is:
 * Our users (who live in Berlin) feel like going to the cinema, and first want to check out which movies are being played these days.
 * When the users have chosen a movie, they want to check at which times it is shown in a cinema closeby. They might not remember the full cinema name.
 * Once they have seen all show times for the chosen movie, they want to look for the exact cinema address and the ticket prices.
@@ -59,7 +59,7 @@ The [Swagger UI](https://flask-restplus.readthedocs.io/en/stable/swagger.html) a
 
 &#8594; **Call the GET endpoint** `/movies/titles` to retrieve all movie titles currently shown in Berlin cinemas. Clicking on movies, then on "Try it out" under "/movies/titles", and then on "Execute". Optionally, you can also filter by indicating (as the "contains" parameter) a sub-string which must be included in the title. You should see a Response, hopefully with Code 200!
 
-Of course, you can also make GET requests with curl, yet it is not so friendly. 
+Of course, you can also make GET requests with curl, yet this is not so friendly. 
 
 In your terminal, if you have curl installed:
 
@@ -79,4 +79,8 @@ http://<local host>:8001/movies/titles?contains=das
 
 &#8594; Step on the toes of our user and **use these endpoints**, under **/movies/** and under **/cinemas/**, to replicate her "journey" from "I want to watch some new movie at the cinema" to "I know when to go where and for which movie".
 
-Can you think of other use cases? Do you imagine how the frontend can look like?
+Can you think of other use cases? 
+
+Do you imagine how the frontend can look like?
+
+[Continue to](../concluding_remarks.md) concluding remarks.

@@ -6,9 +6,9 @@ Have you ever wanted to know when a movie is shown in the cinema, but then been 
 
 Technical:
 
-* Python 3.7.4 (not tested with lower Python versions)
-* An IDE, e.g. Spyder or PyCharm. You can follow [this guide](https://github.com/laufergall/pythonsql_workshop/blob/master/docs/get_started.md) to get python, anaconda environments, and an IDE set up.
-* Docker Desktop or Docker Toolbox, whichever works in your system, [this post](https://nickjanetakis.com/blog/should-you-use-the-docker-toolbox-or-docker-for-mac-windows) can helpyou decide. Follow the [docker documentation](https://docs.docker.com/get-started/) to install Docker and verify your installation.
+* Python 3.6+
+* An IDE, e.g. Spyder or PyCharm, or a decent code editor like Atom or Visual Studio Code. You can follow [this guide](https://github.com/laufergall/pythonsql_workshop/blob/master/docs/get_started.md) to get python, anaconda environments, and an IDE set up.
+* Docker Desktop or Docker Toolbox, whichever works in your system, [this post](https://nickjanetakis.com/blog/should-you-use-the-docker-toolbox-or-docker-for-mac-windows) can help you decide. Follow the [docker documentation](https://docs.docker.com/get-started/) to install Docker and verify your installation.
 
 Background knowledge:
 * Basic Python
@@ -19,9 +19,9 @@ Background knowledge:
 
 ## Introduction
 
-This workshop consists on looking at different components of [my application](https://github.com/laufergall/movies-knowledgegraph) for scraping the cinema program, writing the data to a NoSQL database, and backend api enpoints for querying the data. 
+This workshop consists on looking at different components of [my application](https://github.com/laufergall/movies-knowledgegraph/tree/workshop) for scraping the Berlin cinema program, writing the data to a NoSQL database, and backend api enpoints for querying the data. 
 
-This application still needs lots of improvement, but it serves to illustrate different aspects.
+This application still needs lots of improvement, but it serves to illustrate the different aspects.
 
 Based on this code, we will go through a series of [hands-on tasks](#Hands-on) to understand:
 
@@ -38,3 +38,5 @@ Based on this code, we will go through a series of [hands-on tasks](#Hands-on) t
 1. [Scrape the cinema program](workshop/task_01/task_01.md)
 2. [Write scraped data to database and connect to it with a db client](workshop/task_02/task_02.md)
 3. [Call REST API endpoints to retrieve information](workshop/task_03/task_03.md)
+
+[Concluding remarks](workshop/concluding_remarks.md).
